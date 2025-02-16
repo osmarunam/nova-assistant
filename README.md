@@ -55,19 +55,41 @@ $ python -m venv env
 $ source env/bin/activate  # On Windows use `env\Scripts\activate`
 ```
 
-3. **Install dependencies:**
+3. **Install dependencies with `uv`:**
 
-```bash
-$ pip install -r requirements.txt
+To install the required dependencies for this project, use the following command with `uv`:
+
+- First, ensure you have `uv` installed. If not, install it globally:
+  ```bash
+  pip install uv
+  ```
+- Then, install the dependencies using uv
+
+```
+uv install
 ```
 
-4. **Set up environment variables:**
-
-Create a `.env` file in the root directory with the following variables:
+4. **Download Kokoro model and voices:**
 
 ```
-TELEGRAM_BOT_TOKEN=your_telegram_bot_token
-OPENAI_API_KEY=your_openai_api_key
+wget https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx -P app/tts_files
+wget https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin -P app/tts_files
+```
+
+5. **Set up your API keys:**
+
+In the config.py file, provide your API tokens and keys:
+
+```
+# config.py
+class Settings:
+    TELEGRAM_TOKEN = "APII_TOKEN_HERE"
+    TELEGRAM_API_BASE = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
+    OPENAI_API_KEY = "API_KEY"
+    OPENAI_MODEL = "gpt-4o-mini"
+    NOVITA_API_KEY = "API_KEY" # Optional, if you want to use Novita API
+    NOVITA_API_URL = "https://api.novita.ai/v3beta/flux-1-schnell" # Optional, if you want to use Novita API
+    GROQ_API_KEY = "API_KEY" # To be implemented :)
 ```
 
 5. **Run the FastAPI server:**

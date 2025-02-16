@@ -50,20 +50,22 @@ async def telegram_webhook(update: TelegramUpdate):
     
     # Get AI response
     try:
-        if 'image' in user_message:
+        ai_response = await get_ai_response(history)
         
-            # image_url = await generate_image_dalle(user_message)
-            image_url = await generate_image(user_message)
+        # Send response back to user
+        await send_telegram_message(chat_id, ai_response)
+        
+        # Add AI response to conversation history
+        conversation_state.add_message(chat_id, "assistant", ai_response)
+        
+        # TODO: Should a proper router be used here instead of this simple approach
+        if 'image' in user_message:
+            logger.info(f"===============>Generating image for user message: {user_message}")
+            image_url = await generate_image_dalle(user_message)
+            # image_url = await generate_image(user_message)
             await send_telegram_image(chat_id, image_url)
             
         else:
-            ai_response = await get_ai_response(history)
-            
-            # Add AI response to conversation history
-            conversation_state.add_message(chat_id, "assistant", ai_response)
-            
-            # Send response back to user
-            await send_telegram_message(chat_id, ai_response)
             if 'audio' in user_message:
                 # audio_data = await text_to_speech(ai_response)
                 await send_telegram_audio(chat_id, ai_response)
