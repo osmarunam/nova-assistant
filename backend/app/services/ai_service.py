@@ -45,5 +45,5 @@ async def generate_image(prompt: str) -> str:
         response = await client.post(settings.NOVITA_API_URL, json=payload, headers=headers, timeout=30)
         response_json = response.json()
     
-    logger.info(f'---------->{response_json}')
+    # logger.info(f'---------->{response_json}')
     return response_json["images"][0]["image_url"]

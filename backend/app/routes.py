@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 @router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Server is running"}
 
 
 @router.post("/webhook")
@@ -46,7 +46,7 @@ async def telegram_webhook(update: TelegramUpdate):
     
     # Get conversation history
     history = conversation_state.get_conversation_history(chat_id)
-    logger.info(f"Conversation history: {history}")
+    # logger.info(f"Conversation history: {history}")
     
     # Get AI response
     try:

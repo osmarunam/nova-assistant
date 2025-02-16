@@ -9,6 +9,9 @@ import httpx
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Set up Telegram webhook. Replace with your actual webhook URL
+WEBHOOK_URL = "https://1a43-2601-cb-8000-33e0-cc36-3fe1-b97c-9890.ngrok-free.app/webhook"
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -17,7 +20,7 @@ async def lifespan(app: FastAPI):
     async with httpx.AsyncClient() as client:
         response = await client.get(
             f"https://api.telegram.org/bot{settings.TELEGRAM_TOKEN}/setWebhook",
-            params={"url": "https://1a43-2601-cb-8000-33e0-cc36-3fe1-b97c-9890.ngrok-free.app/webhook"}
+            params={"url": WEBHOOK_URL}
         )
         if response.status_code != 200 or not response.json().get("ok"):
             print(f"Error setting webhook: {response.status_code} - {response.text}")
