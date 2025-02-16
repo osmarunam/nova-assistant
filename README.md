@@ -52,14 +52,7 @@ $ git clone https://github.com/yourusername/ai-agent-telegram.git
 $ cd ai-agent-telegram
 ```
 
-2. **Create a virtual environment:**
-
-```bash
-$ python -m venv env
-$ source env/bin/activate  # On Windows use `env\Scripts\activate`
-```
-
-3. **Install dependencies with `uv`:**
+2. **Install dependencies with `uv`:**
 
 To install the required dependencies for this project, use the following command with `uv`:
 
@@ -75,7 +68,7 @@ To install the required dependencies for this project, use the following command
 uv install
 ```
 
-4. **Download Kokoro model and voices:**
+3. **Download Kokoro model and voices:**
 
 ```
 wget https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx -P app/tts_files
@@ -84,7 +77,7 @@ wget https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v
 
 For more information, please refer to the [kokoro-onnx](https://github.com/thewh1teagle/kokoro-onnx) repository.
 
-5. **Set up your API keys:**
+4. **Set up your API keys:**
 
 In the config.py file, provide your API tokens and keys:
 
@@ -100,13 +93,13 @@ class Settings:
     GROQ_API_KEY = "API_KEY" # To be implemented :)
 ```
 
-6. **Run the FastAPI server:**
+5. **Run the FastAPI server:**
 
 ```bash
 $ uvicorn app.main:app --reload
 ```
 
-7. **Set up your Telegram bot webhook:**
+6. **Set up your Telegram bot webhook:**
 
 ```bash
 $ curl -F "url=https://your-server-url/webhook" https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook
