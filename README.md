@@ -60,9 +60,11 @@ $ source env/bin/activate  # On Windows use `env\Scripts\activate`
 To install the required dependencies for this project, use the following command with `uv`:
 
 - First, ensure you have `uv` installed. If not, install it globally:
+
   ```bash
   pip install uv
   ```
+
 - Then, install the dependencies using uv
 
 ```
@@ -75,6 +77,8 @@ uv install
 wget https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx -P app/tts_files
 wget https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin -P app/tts_files
 ```
+
+For more information, please refer to the [kokoro-onnx](https://github.com/thewh1teagle/kokoro-onnx) repository.
 
 5. **Set up your API keys:**
 
@@ -92,13 +96,13 @@ class Settings:
     GROQ_API_KEY = "API_KEY" # To be implemented :)
 ```
 
-5. **Run the FastAPI server:**
+6. **Run the FastAPI server:**
 
 ```bash
 $ uvicorn app.main:app --reload
 ```
 
-6. **Set up your Telegram bot webhook:**
+7. **Set up your Telegram bot webhook:**
 
 ```bash
 $ curl -F "url=https://your-server-url/webhook" https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook
