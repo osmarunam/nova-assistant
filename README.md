@@ -37,6 +37,10 @@ This project is a fully interactive AI-powered chatbot built with FastAPI and Te
 
 ```
 
+## System Design
+
+![System Design](system_design.svg)
+
 ---
 
 ## Installation
