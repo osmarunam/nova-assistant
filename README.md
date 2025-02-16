@@ -63,10 +63,9 @@ To install the required dependencies for this project, use the following command
   ```
 
 - Then, install the dependencies using uv
-
-```
-uv install
-```
+  ```bash
+  uv install
+  ```
 
 3. **Download Kokoro model and voices:**
 
