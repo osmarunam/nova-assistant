@@ -1,0 +1,14 @@
+[project]
+name = "nova-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi[standard]>=0.115.8",
+    "kokoro-onnx>=0.4.2",
+    "litellm>=1.61.3",
+    "pydantic-settings>=2.7.1",
+    "python-telegram-bot>=21.10",
+    "soundfile>=0.13.1",
+]
