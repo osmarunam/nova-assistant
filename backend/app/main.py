@@ -1,16 +1,17 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from app.routes import router
 from app.config import settings
 import logging
 import httpx
 
 
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Set up Telegram webhook. Replace with your actual webhook URL
-WEBHOOK_URL = "https://1a43-2601-cb-8000-33e0-cc36-3fe1-b97c-9890.ngrok-free.app/webhook"
+WEBHOOK_URL = "https://a470-2601-cb-8000-33e0-d573-ac9d-c31f-e432.ngrok-free.app/webhook"
 
 
 @asynccontextmanager

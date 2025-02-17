@@ -1,16 +1,19 @@
 from fastapi import APIRouter, HTTPException
 from app.models import TelegramUpdate
-from app.services.telegram_service import send_telegram_message, send_telegram_image
-from app.services.ai_service import generate_image, get_ai_response, generate_image_dalle
+from app.services.telegram_service import send_telegram_message, send_telegram_image, text_to_speech
+from app.services.ai_service import generate_image, get_ai_response, generate_image_dalle, get_next_action
 from app.conversation import conversation_state
 from app.services.telegram_service import send_telegram_audio
 from app.config import settings
 import logging
 import httpx
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 router = APIRouter()
-logger = logging.getLogger(__name__)
+
 
 @router.get("/")
 async def root():
@@ -20,7 +23,6 @@ async def root():
 @router.post("/webhook")
 async def telegram_webhook(update: TelegramUpdate):
     """Handle incoming Telegram messages"""
-    logger.info(f"===============>Received update: {update}")
     if not update.message or not update.message.get("text"):
         return {"status": "ok"}
     
@@ -58,16 +60,19 @@ async def telegram_webhook(update: TelegramUpdate):
         # Add AI response to conversation history
         conversation_state.add_message(chat_id, "assistant", ai_response)
         
-        # TODO: Should a proper router be used here instead of this simple approach
-        if 'image' in user_message:
-            logger.info(f"===============>Generating image for user message: {user_message}")
-            image_url = await generate_image_dalle(user_message)
+        next_action = await get_next_action(history)
+        logger.info(f"Next action: {next_action['response_type']}")
+        
+        if next_action["response_type"] == "image":
+            # logger.info(f"===============>Generating image for user message: {user_message}")
+            
+            image_url = await generate_image_dalle(history)
+            logger.info(f"+++++++image_url: {image_url}")
             # image_url = await generate_image(user_message)
             await send_telegram_image(chat_id, image_url)
             
-        else:
-            if 'audio' in user_message:
-                # audio_data = await text_to_speech(ai_response)
+        elif next_action["response_type"] == "audio":
+                audio_data = await text_to_speech(ai_response)
                 await send_telegram_audio(chat_id, ai_response)
             
     except Exception as e:
