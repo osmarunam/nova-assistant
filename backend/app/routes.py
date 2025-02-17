@@ -5,6 +5,7 @@ from app.services.ai_service import generate_image, get_ai_response, generate_im
 from app.conversation import conversation_state
 from app.services.telegram_service import send_telegram_audio
 from app.config import settings
+from app.services.stt import transcribe
 import logging
 import httpx
 
@@ -23,7 +24,8 @@ async def root():
 @router.post("/webhook")
 async def telegram_webhook(update: TelegramUpdate):
     """Handle incoming Telegram messages"""
-    if not update.message or not update.message.get("text"):
+    # logger.info(f"+++++++++++++++++++++++++++++++++Received message from user: {update.message}")
+    if not update.message:
         return {"status": "ok"}
     
     chat_id = update.message["chat"]["id"]
@@ -37,11 +39,10 @@ async def telegram_webhook(update: TelegramUpdate):
         # Handle voice message
         voice_file_id = update.message["voice"]["file_id"]
         voice_data = await download_voice_message(voice_file_id)
-        # user_message = await speech_to_text(voice_data)
+        user_message = await transcribe(voice_data)
         message_type = "voice"
     
     
-    logger.info(f"Received message from user {chat_id}: {user_message}")
     
     # Add user message to conversation history
     conversation_state.add_message(chat_id, "user", user_message, message_type)
@@ -64,11 +65,9 @@ async def telegram_webhook(update: TelegramUpdate):
         logger.info(f"Next action: {next_action['response_type']}")
         
         if next_action["response_type"] == "image":
-            # logger.info(f"===============>Generating image for user message: {user_message}")
-            
-            image_url = await generate_image_dalle(history)
+            # image_url = await generate_image_dalle(history)
+            image_url = await generate_image(history)
             logger.info(f"+++++++image_url: {image_url}")
-            # image_url = await generate_image(user_message)
             await send_telegram_image(chat_id, image_url)
             
         elif next_action["response_type"] == "audio":
