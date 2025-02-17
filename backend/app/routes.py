@@ -41,17 +41,19 @@ async def telegram_webhook(update: TelegramUpdate):
         voice_data = await download_voice_message(voice_file_id)
         user_message = await transcribe(voice_data)
         message_type = "voice"
-    
-    
+        if not user_message:
+            await send_telegram_message(
+                chat_id,
+                "I apologize, but I'm having trouble processing your audio message. Can you type it?"
+            )
+            return {"status": "ok"}
     
     # Add user message to conversation history
     conversation_state.add_message(chat_id, "user", user_message, message_type)
     
     # Get conversation history
     history = conversation_state.get_conversation_history(chat_id)
-    # logger.info(f"Conversation history: {history}")
     
-    # Get AI response
     try:
         ai_response = await get_ai_response(history)
         

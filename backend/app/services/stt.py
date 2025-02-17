@@ -16,18 +16,19 @@ async def transcribe(audio_bytes: bytes, model: str = "distil-whisper-large-v3-e
     :param temperature: Sampling temperature.
     :return: Transcription text.
     """
-    # Initialize the Groq client
-    client = Groq(api_key=settings.GROQ_API_KEY)
-
-    # Create a transcription of the audio file
-    transcription = client.audio.transcriptions.create(
-        file=("audio.m4a", audio_bytes),  # Fake filename for the request
-        model=model,  
-        language=language,  
-        temperature=temperature,  
-        response_format="json"  
-    )
-
-    logger.info(f"Transcription: {transcription}")
     
-    return transcription.text
+    client = Groq(api_key=settings.GROQ_API_KEY)
+    try:
+        transcription = client.audio.transcriptions.create(
+            file=("audio.m4a", audio_bytes),  # Fake filename for the request
+            model=model,  
+            language=language,  
+            temperature=temperature,  
+            response_format="json"  
+        )
+
+        return transcription.text
+    
+    except Exception as e:
+        logger.error(f"Error transcribing audio: {e}")
+        return None
