@@ -116,9 +116,9 @@ $ curl -F "url=https://your-server-url/webhook" https://api.telegram.org/bot<TEL
 
 ## Roadmap
 
-- [ ] Add support for multiple languages.
+- [x] Implement Router for handling different types of interactions.
+- [x] Implement Speech-to-Text (STT) for voice interactions.
 - [ ] Add support for vision based interactions.
-- [ ] Implement Speech-to-Text (STT) for voice interactions.
 - [ ] Implement user-specific conversation memory via a database.
 - [ ] Integrate external APIs for enhanced responses.
 - [ ] Enhance the user interface for a better user experience.
