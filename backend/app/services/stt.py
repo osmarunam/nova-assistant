@@ -1,6 +1,5 @@
 from app.config import settings
 from groq import Groq
-import os
 import logging
 
 logging.basicConfig(level=logging.INFO)

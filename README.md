@@ -15,25 +15,27 @@ This project is a fully interactive AI-powered chatbot built with FastAPI and Te
 
 ```
 .
-├── app
-│   ├── __init__.py
-│   ├── config.example.py
-│   ├── config.py
-│   ├── conversation.py
-│   ├── kokoro_tts
-│   │   ├── __init__.py
-│   │   └── tts.py
-│   ├── main.py
-│   ├── models.py
-│   ├── prompts.py
-│   ├── routes.py
-│   ├── services
-│   │   ├── __init__.py
-│   │   ├── ai_service.py
-│   │   └── telegram_service.py
-│   └── tts_files
-│       ├── kokoro-v1.0.onnx
-│       └── voices-v1.0.bin
+└── app
+    ├── __init__.py
+    ├── config.example.py
+    ├── config.py
+    ├── conversation.py
+    ├── kokoro_tts
+    │   ├── __init__.py
+    │   └── tts.py
+    ├── main.py
+    ├── models.py
+    ├── prompts.py
+    ├── routes.py
+    ├── services
+    │   ├── __init__.py
+    │   ├── ai_service.py
+    │   ├── stt.py
+    │   └── telegram_service.py
+    ├── tts_files
+    │   ├── kokoro-v1.0.onnx
+    │   └── voices-v1.0.bin
+    └── utils.py
 
 ```
 
