@@ -7,11 +7,17 @@ from app.utils import format_conversation_for_llm
 import httpx
 import logging
 import json
+import litellm
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# litellm._turn_on_debug()
+
 async def get_ai_response(conversation_history: list) -> str:
+    
+    if len(conversation_history) == 0:
+        return "Sorry, I'm not sure how to respond to that."
     
     current_date = datetime.now().strftime("%Y-%m-%d")
     messages = [{"role": "system", "content": agent_system_prompt.format(current_date=current_date)}]

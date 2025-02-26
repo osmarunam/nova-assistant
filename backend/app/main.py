@@ -11,7 +11,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Set up Telegram webhook. Replace with your actual webhook URL
-WEBHOOK_URL = "https://a470-2601-cb-8000-33e0-d573-ac9d-c31f-e432.ngrok-free.app/webhook"
+backend_url = "https://939b-207-5-31-67.ngrok-free.app"
+WEBHOOK_URL = f"{backend_url}/webhook"
 
 
 @asynccontextmanager

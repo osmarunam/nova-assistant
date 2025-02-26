@@ -24,7 +24,8 @@ async def root():
 @router.post("/webhook")
 async def telegram_webhook(update: TelegramUpdate):
     """Handle incoming Telegram messages"""
-    # logger.info(f"+++++++++++++++++++++++++++++++++Received message from user: {update.message}")
+    
+    # logger.info(f"------------------------------------>Received update: {update}")
     if not update.message:
         return {"status": "ok"}
     
@@ -48,16 +49,21 @@ async def telegram_webhook(update: TelegramUpdate):
             )
             return {"status": "ok"}
     
+    if not user_message:
+        await send_telegram_message(
+            chat_id,
+            "I'm sorry, I didn't understand that. Can you please rephrase your message?"
+        )
+        return {"status": "ok"}
+    
     # Add user message to conversation history
     conversation_state.add_message(chat_id, "user", user_message, message_type)
-    
-    # Get conversation history
     history = conversation_state.get_conversation_history(chat_id)
+    
+    # logger.info(f"Conversation history: {history}")
     
     try:
         ai_response = await get_ai_response(history)
-        
-        # Send response back to user
         await send_telegram_message(chat_id, ai_response)
         
         # Add AI response to conversation history
